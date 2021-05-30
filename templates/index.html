@@ -1,0 +1,75 @@
+{%extends 'base.html' %}
+
+{%block head%}
+
+
+{% endblock %}
+
+{%block body%}
+<title>Flask To-do Tracker</title>
+
+<div class='content'>
+  
+  <h1>🏠Family To-Do's ✔️ Tracker📝</h1>
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">😃 There are no tasks. Create one below!</h4>
+    {% else %}
+  <table>
+    <tr>
+        <th>Task ✍️</th>
+        <th>Added 📅</th>
+        <th>Doer 👪</th>
+        <th>Actions ✏️</th>
+    </tr>
+    {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date()}}</td>
+                <td>{{ task.doer}}</td>
+                <td>
+                    <a href="/delete/{{task.id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{task.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+        {% endif %}
+        <div class="form">
+        <form action="/" method="POST">
+            <input type="text" name="content" id="content" placeholder="task">  
+            <input type="text" name="doer" id="doer" placeholder="doer">
+            <input type="submit" value="Add Task 📌">
+        </form>
+    </div>
+
+
+
+
+
+<dt style="text-align:center;" class="TitleDivider">
+  <em style="color: #4285F4"> · </em>
+  <em style="color: #DB4437"> · </em>
+  <em style="color: #F4B400"> · </em>
+  <em style="color: #4285F4"> · </em>
+  <em style="color: #0F9D58"> · </em>
+  <em style="color: #DB4437"> · </em>
+</dt>
+  <h5>Developed by Yaokun Lin <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojidex/112/male-technologist_1f468-200d-1f4bb.png" alt="Emoji" width="60">
+   Using Python Flask</h5>
+  <img src="https://flask.palletsprojects.com/en/2.0.x/_images/flask-logo.png" 
+  alt="Flask_Icon" 
+  style="width:384px;height:150px;">
+  <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png" 
+  alt="Python_Icon" 
+  style="width:384px;height:150px;">
+  <img src="https://deavid.files.wordpress.com/2019/10/connect-a-flask-app-to-a-mysql-database-with-sqlalchemy-and-pymysql.jpg" 
+  alt="SQL_Icon" 
+  style="width:384px;height:150px;">
+  <img src="https://camo.githubusercontent.com/065f065d12a6ba6b2cfcff767aaafd438a7ed5ae615e3ac39051c022cebaa698/68747470733a2f2f63646e2e776f726c64766563746f726c6f676f2e636f6d2f6c6f676f732f6865726f6b752d312e737667" 
+  alt="Heroku_Icon" 
+  style="width:384px;height:150px;">
+
+  <h5>May 29, 2021</h5>
+</div>
+{% endblock %}
